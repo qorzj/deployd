@@ -11,7 +11,7 @@ class FileReceiver:
         f = web_input.data
         cmd = web_input.cmd
 
-        if len(f) == 0:
+        if f == {} or isinstance(f, str):
             return 'data not given'
         if not cmd:
             return 'cmd not given'
