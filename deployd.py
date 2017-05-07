@@ -34,7 +34,8 @@ class FileReceiver:
         os.chdir(path)
         if f is not None:
             open(f.filename, 'wb').write(f.value)
-        os.system(cmd)
+        if os.system(cmd) != 0:
+            return 'failed'
         return 'ok'
 
     def GET(self, path):
