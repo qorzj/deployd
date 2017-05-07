@@ -10,9 +10,8 @@ class FileReceiver:
         web_input = web.input(data={}, cmd='')
         f = web_input.data
         cmd = web_input.cmd
+        if f == {} or isinstance(f, str): f = None
 
-        if f == {} or isinstance(f, str):
-            return 'data not given'
         if not cmd:
             return 'cmd not given'
 
@@ -33,7 +32,8 @@ class FileReceiver:
             return 'invalid .deployd.conf: ' + str(e)
 
         os.chdir(path)
-        open(f.filename, 'wb').write(f.value)
+        if f is not None:
+            open(f.filename, 'wb').write(f.value)
         os.system(cmd)
         return 'ok'
 
