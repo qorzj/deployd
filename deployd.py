@@ -37,7 +37,7 @@ class FileReceiver:
         os.system(cmd)
         return 'ok'
 
-    def GET(self):
+    def GET(self, path):
         chars = 'abcdefghijklmnopqrstuvwxyz'
         chars += chars.upper() + '0123456789'
         return ''.join([random.choice(chars) for i in range(64)])
@@ -47,5 +47,5 @@ app.add_mapping('(.+)', FileReceiver)
 
 
 with daemon.DaemonContext():
-    open('/var/lock/subsys/deploytool', 'w').write(str(os.getpid()))
+    open('/var/lock/subsys/deployd', 'w').write(str(os.getpid()))
     app.run()
