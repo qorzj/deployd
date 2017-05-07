@@ -17,3 +17,13 @@
 ### 卸载
 `rm /etc/init.d/deployd`
 
+### 示例
+client端的命令： `curl -F "data=@{local_file_path}" -F "cmd={deploy_command}" -H "token: {token}"  http://{host}:{port}{server_working_dir}`
+
+server端的设置:
+`cat {server_working_dir}`
+```
+{client_ip1}  {token1}
+{client_ip2}  {token2}
+...
+```
