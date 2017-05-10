@@ -24,7 +24,7 @@ class FileReceiver:
             for line in open(conf_name):
                 if not line.strip() or line.startswith('#'): continue
                 ip, token = line.split()
-                if ip == web.ctx.ip and token == http_token:
+                if (ip == web.ctx.ip or ip == '*') and token == http_token:
                     break
             else:
                 return 'access denied'
